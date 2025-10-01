@@ -16,7 +16,7 @@ module my_first_testbench();
 
     // Monitor the outputs and inputs
     initial begin
-        $monitor("a=%d, b=%d, sum=%d", a,b,sum);
+        $monitor("a = %d, b = %d, sum = %d", a, b, sum);
 	end
 
 	// Generate stimulus

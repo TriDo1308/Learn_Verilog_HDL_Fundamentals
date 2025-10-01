@@ -4,12 +4,12 @@ module math_operators();
     integer result;
     
     // Procedure used to continuously monitor 'a', 'b', and 'result'
-	initial begin
+    initial begin
         $monitor("MON a = %0d, b = %0d, result = %0d", a, b, result);
-	end
+    end
   
 	// Procedure used to generate stimulus
-	initial begin
+    initial begin
         result = a ** b;            // exponentiation
         #1;
         result = b ** a;            // wait some time between examples
@@ -37,7 +37,7 @@ module math_operators();
       
         // Change the values of a and b and perform different arithmetic poerations between them
         // Ex: a = 101, b = 876, c = (b % a) / (2**4)
-	end
+    end
 endmodule
 
 /* OUTPUT

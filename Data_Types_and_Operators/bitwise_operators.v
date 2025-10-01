@@ -5,7 +5,7 @@ module bitwise_operators();
 	
 	// Procedure used to continuously monitor 'x', 'y', and 'result'
 	initial begin
-	        $monitor("MON x = %b, y = %b, result = %b", x, y, result);
+	    $monitor("MON x = %b, y = %b, result = %b", x, y, result);
 	end
 	
 	// Procedure used to generate stimulus
