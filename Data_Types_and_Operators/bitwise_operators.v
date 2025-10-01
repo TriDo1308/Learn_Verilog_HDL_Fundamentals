@@ -1,16 +1,16 @@
 module bitwise_operators();
   	reg [5:0] x = 0;        		// 6bit variable
  	reg [5:0] y = 0;        		// 6bit variable
-    reg [5:0] result = 0;   		// 6bit variable
+        reg [5:0] result = 0;   		// 6bit variable
 	
 	// Procedure used to continuously monitor 'x', 'y', and 'result'
 	initial begin
-		$monitor("MON x = %b, y = %b, result = %b", x, y, result);
+	        $monitor("MON x = %b, y = %b, result = %b", x, y, result);
 	end
 	
 	// Procedure used to generate stimulus
 	initial begin
-        #1;  						// wait some time between examples
+        #1;  					// wait some time between examples
         x = 6'b00_0101;
 	    y = 6'b11_0001;
         result = x & y; 			// AND
