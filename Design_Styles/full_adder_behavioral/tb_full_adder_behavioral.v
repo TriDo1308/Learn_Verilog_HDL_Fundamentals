@@ -7,7 +7,7 @@ module testbench();
     wire cout;  
   
     // Instantiate the module
-    full_adder_structural FULL_ADD(
+    full_adder_behavioral FULL_ADD(
         .a(a),
         .b(b),
         .carry_in(cin),
@@ -17,10 +17,10 @@ module testbench();
   
     // Generate stimulus and monitor module ports
     initial begin
-        $monitor("a = %b, b = %b, carry_in = %0b, sum = %b, carry_out = %b", a, b, cin, sum, cout);       // %0b will help remove all 0s before finding a bit with value 1
+        $monitor("a = %b, b = %b, carry_in = %0b, sum = %b, carry_out = %b", a, b, cin, sum, cout);
     end  
   
-    initial begin // the same data as in the truth table
+    initial begin
         #1; a = 0; b = 0; cin = 0;
         #1; a = 0; b = 0; cin = 1;
         #1; a = 0; b = 1; cin = 0;

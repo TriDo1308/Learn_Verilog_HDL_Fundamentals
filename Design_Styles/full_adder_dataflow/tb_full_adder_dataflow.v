@@ -17,7 +17,7 @@ module testbench();
   
     // Generate stimulus and monitor module ports
     initial begin
-      $monitor("a = %b, b = %b, carry_in = %0b, sum = %b, carry_out = %b", a, b, cin, sum, cout);
+        $monitor("a = %b, b = %b, carry_in = %0b, sum = %b, carry_out = %b", a, b, cin, sum, cout);
     end  
   
     initial begin
