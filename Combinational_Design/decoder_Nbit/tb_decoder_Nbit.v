@@ -11,8 +11,7 @@ module tb_decoder_nbit();
     // Instantiate the parameterized DUT
     decoder_nbit 
     #(.N(DEC_WIDTH))
-    DEC1
-    (
+    DEC1 (
         .a(a),
         .enable(enable),
         .y(y)
