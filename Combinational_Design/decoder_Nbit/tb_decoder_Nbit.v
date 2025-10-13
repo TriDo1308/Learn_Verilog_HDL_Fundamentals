@@ -20,7 +20,7 @@ module tb_decoder_nbit();
   
     // Create stimulus
     initial begin
-        $monitor($time, "a = %d, enable = %b, y = %b", a, enable, y);
+        $monitor($time, " a = %d, enable = %b, y = %b", a, enable, y);
         #1; a = 0; enable = 0;
         for (i = 0; i < 2 ** DEC_WIDTH; i = i + 1) begin
             #1; a = i; enable = 1;

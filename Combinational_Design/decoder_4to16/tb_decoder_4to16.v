@@ -13,7 +13,7 @@ module tb_decoder_4to16();
   
     // Create stimulus
     initial begin
-        $monitor($time, "a = %d, d = %b", a, d);
+        $monitor($time, " a = %d, d = %b", a, d);
         #1; a = 0;
         for (i = 0; i < 16; i = i + 1) begin
             #1; a = i;
