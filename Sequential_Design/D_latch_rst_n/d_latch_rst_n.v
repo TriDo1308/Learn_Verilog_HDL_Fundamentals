@@ -5,9 +5,9 @@ module d_latch_rst_n(
 	output q,
     output q_not
     );
-	
-	reg dlatch;
-	
+
+	reg dlatch;					// Latch needs to hold its state when enable = 0 (no new assignment → reg retains previous value).
+
 	// The D-Lach is level sensitive
 	always @(enable or d or reset_n) begin
 	    if (!reset_n)
@@ -15,7 +15,7 @@ module d_latch_rst_n(
 	    else if(enable)
 		    dlatch <= d; 
 	end
-	
+
 	assign q = dlatch;
 	assign q_not = ~q;
 endmodule
