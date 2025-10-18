@@ -8,11 +8,12 @@ module tb_adders3_proc();
     wire [9:0] sum3;
 
     // Instantiate the DUT
-    adders3_procedural ADD3(
-        .a(a),
-        .b(b),
-        .c(c),
-        .d(d),
+    adders3_procedural ADD3
+    (
+        .a   (a   ),
+        .b   (b   ),
+        .c   (c   ),
+        .d   (d   ),
         .sum1(sum1),
         .sum2(sum2),
         .sum3(sum3)

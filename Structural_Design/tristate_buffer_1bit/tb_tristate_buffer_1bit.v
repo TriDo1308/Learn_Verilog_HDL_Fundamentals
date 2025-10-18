@@ -6,9 +6,10 @@ module tb_tristate();
     wire dout;
     
     // Instantiate the DUT
-    tristate_buffer_1bit TRI1(
-        .din(din),
-        .sel(sel),
+    tristate_buffer_1bit TRI1
+    (
+        .din (din ),
+        .sel (sel ),
         .dout(dout)
     );
       

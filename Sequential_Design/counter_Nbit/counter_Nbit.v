@@ -4,7 +4,7 @@ module counter_nbit
     // Ports section
     (input clk,
      input reset_n,
-     output reg [CNT_WIDTH-1:0] counter);
+     output reg [CNT_WIDTH - 1 : 0] counter);
   
     // Use non-blocking assignment for sequential logic
     always @(posedge clk or negedge reset_n) begin

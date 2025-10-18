@@ -11,7 +11,8 @@ module tb_D_FF_rst_n();
     integer i;
 
 	// Instantiate the DUT
-	D_FF_sync_rst_n DFF0(
+	D_FF_sync_rst_n DFF0
+	(
 	    .reset_n(reset_n),
 	    .clk    (clk    ),
         .d      (d      ),

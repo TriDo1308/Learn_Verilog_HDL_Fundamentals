@@ -10,13 +10,14 @@ module tb_shift_left_right_reg();
 	wire [7:0] q;
 
 	// Instantiate the DUT
-    shift_left_right_load_reg SRL0(
-	    .clk(clk),
-	    .reset_n(reset_n),
-	    .i(i),         
-	    .load_enable(load_enable),     
+    shift_left_right_load_reg SRL0
+	(
+	    .clk             (clk             ),
+	    .reset_n         (reset_n         ),
+	    .i               (i               ),         
+	    .load_enable     (load_enable     ),     
         .shift_left_right(shift_left_right),
-	    .q(q)
+	    .q               (q               )
     );
 	
 	// Create the clock signal

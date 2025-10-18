@@ -8,7 +8,8 @@ module tb_encoder_8to3();
 	integer i;
 
     // Instantiate the DUT
-    encoder_8to3 ENC3_8 (
+    encoder_8to3 ENC3_8
+    (
         .d     (d     ),
         .enable(enable),
         .y     (y     )

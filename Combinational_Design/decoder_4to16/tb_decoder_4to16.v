@@ -6,7 +6,8 @@ module tb_decoder_4to16();
     integer i;
    
     // Instantiate the DUT
-    decoder_4to16 DEC4_16 (
+    decoder_4to16 DEC4_16
+    (
         .a(a),
         .d(d)
     );

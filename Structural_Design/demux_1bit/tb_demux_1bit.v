@@ -4,11 +4,12 @@ module tb_demux();
     wire y0, y1;
 
     // Instantiate the DUT
-    demux_1bit DEMUX1(
-        .x(x),
+    demux_1bit DEMUX1
+    (
+        .x  (x  ),
         .sel(sel),
-        .y0(y0),
-        .y1(y1)
+        .y0 (y0 ),
+        .y1 (y1 )
     );
   
     // Toggle x (data source)

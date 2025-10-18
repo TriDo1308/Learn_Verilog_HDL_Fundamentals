@@ -8,11 +8,12 @@ module tb_adders_tree();
     wire [9:0] sum3;
 	
     // Instantiate the DUT
-    adders_tree ADD(
-        .a(a),
-        .b(b),
-        .c(c),
-        .d(d),
+    adders_tree ADD
+    (
+        .a   (a   ),
+        .b   (b   ),
+        .c   (c   ),
+        .d   (d   ),
         .sum1(sum1),
         .sum2(sum2),
         .sum3(sum3)

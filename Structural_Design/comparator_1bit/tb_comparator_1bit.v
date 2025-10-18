@@ -4,11 +4,12 @@ module tb_comp();
     wire smaller, greater, equal;
 
     // Instantiate the DUT
-    comparator_1bit CMP1(
-        .a(a),
-        .b(b),
+    comparator_1bit CMP1
+    (
+        .a      (a      ),
+        .b      (b      ),
         .smaller(smaller),
-        .equal(equal),
+        .equal  (equal  ),
         .greater(greater)
     );
    

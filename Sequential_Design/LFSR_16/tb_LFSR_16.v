@@ -8,12 +8,13 @@ module tb_lfsr_16();
     wire [15:0] lfsr;
 	
 	// Instantiate the DUT
-    lfsr_16 LSFR(
-            .clk    (clk    ),
-			.reset_n(reset_n),
-			.enable (enable ),
-			.lfsr   (lfsr   )
-			);
+    lfsr_16 LSFR
+	(
+		.clk    (clk    ),
+		.reset_n(reset_n),
+		.enable (enable ),
+		.lfsr   (lfsr   )
+	);
 
 	// Create the clock signal
 	always begin

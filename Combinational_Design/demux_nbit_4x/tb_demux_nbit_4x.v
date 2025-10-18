@@ -14,13 +14,14 @@ module tb_demux_nbit_x4();
     // Instantiate the DUT 
     demux_nbit_x4
     #(.BUS_WIDTH(BUS_WIDTH))
-    DEMUX0 ( 
-        .y(y),
+    DEMUX0
+    ( 
+        .y  (y  ),
         .sel(sel),
-        .a(a),
-        .b(b),
-        .c(c),
-        .d(d)
+        .a  (a  ),
+        .b  (b  ),
+        .c  (c  ),
+        .d  (d  )
     );
   
     // Create stimulus

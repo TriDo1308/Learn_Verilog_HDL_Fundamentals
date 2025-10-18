@@ -8,9 +8,10 @@ module my_first_testbench();
 
     // Instantiate the DUT
     // The syntax is <module_name> <instance_name>
-    adder8bit ADDER1(
-        .a(a),                      // first a = port name, second a = variable
-        .b(b),
+    adder8bit ADDER1
+    (
+        .a  (a  ),                      // first a = port name, second a = variable
+        .b  (b  ),
         .sum(sum)
     );
 

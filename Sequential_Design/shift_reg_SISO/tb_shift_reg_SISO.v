@@ -8,7 +8,8 @@ module tb_shift_reg_siso();
 	wire sdo;
 	
 	// Instantiate the DUT
-    shift_reg_siso SISO0(
+    shift_reg_siso SISO0
+	(
 		.reset_n(reset_n),
 	    .clk    (clk    ),
         .sdi    (sdi    ),

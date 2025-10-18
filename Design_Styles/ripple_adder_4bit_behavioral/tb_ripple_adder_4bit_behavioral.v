@@ -10,13 +10,14 @@ module tb_adder_4bit_behav();
     parameter LOOP_LIMIT = 4;
   
     // Instantiate the module
-    adder_4bit_behavioral ADD_4BIT(
-        .a(a),
-        .b(b),
-        .carry_in(cin),
-        .sum(sum),
+    adder_4bit_behavioral ADD_4BIT
+    (
+        .a        (a   ),
+        .b        (b   ),
+        .carry_in (cin ),
+        .sum      (sum ),
         .carry_out(cout)
-        );
+    );
   
     // Generate stimulus and monitor module ports
     initial begin     

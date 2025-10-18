@@ -11,10 +11,11 @@ module tb_decoder_nbit();
     // Instantiate the parameterized DUT
     decoder_nbit 
     #(.N(DEC_WIDTH))
-    DEC1 (
-        .a(a),
+    DEC1
+    (
+        .a     (a     ),
         .enable(enable),
-        .y(y)
+        .y     (y     )
     );
   
     // Create stimulus

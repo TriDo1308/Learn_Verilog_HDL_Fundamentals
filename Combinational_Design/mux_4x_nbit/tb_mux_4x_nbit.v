@@ -12,14 +12,15 @@ module tb_mux_4x_nbit();
 
     // Instantiate the DUT 
     mux_4x_nbit
-        #(.BUS_WIDTH(BUS_WIDTH))
-        MUX0 (
-        .a(a),
-        .b(b),
-        .c(c),
-        .d(d),
+    #(.BUS_WIDTH(BUS_WIDTH))
+    MUX0
+    (
+        .a  (a  ),
+        .b  (b  ),
+        .c  (c  ),
+        .d  (d  ),
         .sel(sel),
-        .y(y)
+        .y  (y  )
     );
   
     // Create stimulus

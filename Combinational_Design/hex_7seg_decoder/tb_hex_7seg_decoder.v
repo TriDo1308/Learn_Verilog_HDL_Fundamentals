@@ -8,17 +8,18 @@ module tb_hex_7seg_decoder();
     integer i; 
 	
     // Instantiate the DUT 
-	hex_7seg_decoder DEC_7SEG(
-		.in(in),
-		.a(a),
-		.b(b),
-		.c(c),
-		.d(d),
-		.e(e),
-		.f(f),
-		.g(g),
+	hex_7seg_decoder DEC_7SEG
+    (
+		.in (in ),
+		.a  (a  ),
+		.b  (b  ),
+		.c  (c  ),
+		.d  (d  ),
+		.e  (e  ),
+		.f  (f  ),
+		.g  (g  ),
 		.dot(dot)
-		);
+	);
   
     // Create stimulus
     initial begin

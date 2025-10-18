@@ -6,7 +6,8 @@ module tb_gates( );
     wire o1, o2, o3, o4, o5, o6, o7, o8, o9, o10;
 	
     // Instantiate the DUT
-    built_in_gates GATES1(
+    built_in_gates GATES1
+    (
         .a(a),   .b(b),   .c(c),   .d(d),
         .o1(o1), .o2(o2), .o3(o3), .o4(o4), .o5(o5), 
         .o6(o6), .o7(o7), .o8(o8), .o9(o9), .o10(o10)

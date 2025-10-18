@@ -6,10 +6,11 @@ module tb_mux_tristate();
     wire dout;
 	
     // Instantiate the DUT
-    mux_tristate MUX1(
-        .a(a),
-        .b(b),
-        .sel(sel),
+    mux_tristate MUX1
+    (
+        .a   (a   ),
+        .b   (b   ),
+        .sel (sel ),
         .dout(dout)
     );
       

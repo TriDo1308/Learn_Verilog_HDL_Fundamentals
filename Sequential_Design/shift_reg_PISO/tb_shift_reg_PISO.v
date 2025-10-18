@@ -12,13 +12,14 @@ module tb_shift_reg_piso();
     integer i;
 	
 	// Instantiate the DUT
-    shift_reg_piso PISO0(
-	    .clk(clk),
+    shift_reg_piso PISO0
+	(
+	    .clk    (clk    ),
 	    .reset_n(reset_n),
-		.sdi(sdi),
-        .pl(preload), 
-        .d(d),
-	    .sdo(sdo)		
+		.sdi    (sdi    ),
+        .pl     (preload), 
+        .d      (d      ),
+	    .sdo    (sdo    )		
     );
 	
 	// Create the clock signal

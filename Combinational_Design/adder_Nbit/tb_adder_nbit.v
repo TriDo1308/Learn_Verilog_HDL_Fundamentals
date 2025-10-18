@@ -11,8 +11,8 @@ module tb_adder_nbit();
     #(.N(ADDER_WIDTH))
     ADDER1
     (
-        .a(a),
-        .b(b),
+        .a  (a  ),
+        .b  (b  ),
         .sum(sum)      
     );
   

@@ -7,7 +7,8 @@ module tb_mux();
     wire y;
     
     // Instantiate the DUT
-    mux_1bit MUX1(
+    mux_1bit MUX1
+    (
         .a(a),
         .b(b),
         .x(x),

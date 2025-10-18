@@ -9,7 +9,8 @@ module tb_shift_reg_pipo();
     integer i;
 	
 	// Instantiate the DUT
-    shift_reg_pipo PIPO0(
+    shift_reg_pipo PIPO0
+	(
 	    .reset_n(reset_n),
 	    .clk    (clk    ),
         .d      (d      ),

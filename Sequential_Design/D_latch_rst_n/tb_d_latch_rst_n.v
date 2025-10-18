@@ -9,12 +9,13 @@ module tb_d_latch_rst_n();
     wire q_not;
     
 	// Instantiate the DUT
-	d_latch_rst_n DL0(
-        .d(d),
-	    .enable(enable),
+	d_latch_rst_n DL0
+	(
+        .d      (d      ),
+	    .enable (enable ),
 		.reset_n(reset_n),
-	    .q(q),
-        .q_not(q_not)
+	    .q      (q      ),
+        .q_not  (q_not  )
 	);
 	
     // Create stimulus	  

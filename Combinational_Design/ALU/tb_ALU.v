@@ -17,16 +17,17 @@ module tb_ALU();
     ALU
     // Parameters section
     #(.BUS_WIDTH(BUS_WIDTH))
-    ALU0 (
-        .a(a),
-        .b(b),
-        .carry_in(carry_in),
-        .opcode(opcode),
-        .y(y),
-        .carry_out(carry_out),
-        .borrow(borrow),
-        .zero(zero),
-        .parity,
+    ALU0
+    (
+        .a         (a         ),
+        .b         (b         ),
+        .carry_in  (carry_in  ),
+        .opcode    (opcode    ),
+        .y         (y         ),
+        .carry_out (carry_out ),
+        .borrow    (borrow    ),
+        .zero      (zero      ),
+        .parity    (parity    ),
         .invalid_op(invalid_op)
     );
   

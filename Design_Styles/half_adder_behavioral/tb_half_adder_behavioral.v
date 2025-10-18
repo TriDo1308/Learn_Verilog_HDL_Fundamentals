@@ -6,12 +6,13 @@ module testbench();
     wire carry;  
   
     // Instantiate the module
-    half_adder_behavioral HALF_ADD(
-        .a(a),
-        .b(b),
-        .sum(sum),
+    half_adder_behavioral HALF_ADD
+    (
+        .a    (a    ),
+        .b    (b    ),
+        .sum  (sum  ),
         .carry(carry)
-        );
+    );
   
     // Generate stimulus and monitor module ports
     initial begin

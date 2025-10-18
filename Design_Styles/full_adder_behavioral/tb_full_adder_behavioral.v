@@ -7,13 +7,14 @@ module testbench();
     wire cout;  
   
     // Instantiate the module
-    full_adder_behavioral FULL_ADD(
-        .a(a),
-        .b(b),
-        .carry_in(cin),
-        .sum(sum),
+    full_adder_behavioral FULL_ADD
+    (
+        .a        (a  ),
+        .b        (b  ),
+        .carry_in (cin),
+        .sum      (sum),
         .carry_out(cout)
-        );
+    );
   
     // Generate stimulus and monitor module ports
     initial begin

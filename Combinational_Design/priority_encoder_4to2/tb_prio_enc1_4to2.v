@@ -7,7 +7,8 @@ module tb_prio_enc1_4to2();
     integer i;              // testbench variable
 	
     // Instantiate the DUT 
-    prio_enc1_4to2 PRENC(
+    prio_enc1_4to2 PRENC
+    (
         .d(d),
         .q(q),
         .v(v)

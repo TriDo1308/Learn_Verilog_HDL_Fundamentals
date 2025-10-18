@@ -8,7 +8,8 @@ module tb_shift_reg_sipo();
 	wire [3:0] q;
 	
 	// Instantiate the DUT
-    shift_reg_sipo SIPO0(
+    shift_reg_sipo SIPO0
+	(
 	    .reset_n(reset_n),
 	    .clk    (clk    ),
         .sdi    (sdi    ),

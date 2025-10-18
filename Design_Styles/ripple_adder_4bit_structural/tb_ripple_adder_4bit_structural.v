@@ -9,13 +9,14 @@ module testbench();
     integer i, j;               // used for verification
     
     // Instantiate the module
-    ripple_adder_4bit_structural RIPPLE_ADD_4BIT(
-        .a(a),
-        .b(b),
-        .carry_in(cin),
-        .sum(sum),
+    ripple_adder_4bit_structural RIPPLE_ADD_4BIT
+    (
+        .a        (a   ),
+        .b        (b   ),
+        .carry_in (cin ),
+        .sum      (sum ),
         .carry_out(cout)
-        );
+    );
   
     // Generate stimulus and monitor module ports
     initial begin

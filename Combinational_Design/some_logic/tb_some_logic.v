@@ -6,7 +6,8 @@ module tb_logic();
     wire c;
 	
     // Instantiate the DUT
-    some_logic LOGIC(
+    some_logic LOGIC
+    (
         .a(a),
         .b(b),
         .c(c)
