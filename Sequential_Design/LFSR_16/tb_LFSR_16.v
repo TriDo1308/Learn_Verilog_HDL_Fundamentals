@@ -38,3 +38,19 @@ module tb_lfsr_16();
         #20 $stop;
     end  
 endmodule
+
+/* Output
+0  enable = x, lfsr = 0xxxxx
+1  enable = 0, lfsr = 0x1001
+4  enable = 1, lfsr = 0x2003
+5  enable = 1, lfsr = 0x4007
+6  enable = 1, lfsr = 0x800e
+7  enable = 1, lfsr = 0x001d
+8  enable = 1, lfsr = 0x003a
+9  enable = 1, lfsr = 0x0074
+10 enable = 1, lfsr = 0x00e8
+11 enable = 1, lfsr = 0x01d0
+12 enable = 1, lfsr = 0x03a0
+13 enable = 1, lfsr = 0x0740
+14 enable = 0, lfsr = 0x0740
+*/
