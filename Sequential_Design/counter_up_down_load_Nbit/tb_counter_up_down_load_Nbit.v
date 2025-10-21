@@ -1,4 +1,5 @@
 `timescale 1us/1ns
+
 module tb_counter_up_down_load_nbit();	
 	// Testbench variables
 	parameter CNT_WIDTH = 3;
