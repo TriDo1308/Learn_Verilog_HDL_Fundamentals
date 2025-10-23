@@ -13,17 +13,17 @@ module full_adder_structural(
 	
     // Instantiate two half_adder_structural modules
     half_adder_structural HA1(
-       .a(a),
-       .b(b),
-       .sum(sum1),
+       .a    (a     ),
+       .b    (b     ),
+       .sum  (sum1  ),
        .carry(carry1)
     ); 
 	
 	half_adder_structural HA2(
-       .a(sum1),
-       .b(carry_in),
-       .sum(sum),
-       .carry(carry2)
+       .a    (sum1    ),
+       .b    (carry_in),
+       .sum  (sum     ),
+       .carry(carry2  )
     );
 	
 	// Use Verilog primitive
