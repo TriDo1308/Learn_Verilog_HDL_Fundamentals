@@ -59,7 +59,7 @@ module tb_shift_reg_pipo_buggy();
 		for (i = 0; i < 10; i = i + 1) begin
 		    load_check_pipo_reg();
 		    delay = $random;
-		    #(delay) d = $random;                                // wait between tests
+		    #(delay) d = i;                                // wait between tests
 		end	
 		
 		// Print statistics 
