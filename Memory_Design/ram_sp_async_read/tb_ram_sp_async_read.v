@@ -14,7 +14,8 @@ module tb_ram_sp_async_read();
     integer i;
 	
 	// Instantiate the DUT
-	ram_sp_async_read RAM0(
+	ram_sp_async_read RAM0
+	(
         .clk     (clk     ),
 	    .data_in (data_in ),                                // 8bit intput word
 	    .address (address ),                                // for 32 locations
