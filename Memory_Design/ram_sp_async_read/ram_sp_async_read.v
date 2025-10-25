@@ -2,7 +2,7 @@
 // The size of the RAM is 16 x 8bit words
 module ram_sp_async_read(
     input clk,
-	input [7:0] data_in,  			// 8bit intput word
+	input [7:0] data_in,  			// 8 bit intput word
 	input [3:0] address,  			// for 16 locations
 	input write_en,       			// active high
 	output [7:0] data_out 			// 8 bit output word
