@@ -14,15 +14,15 @@ module tb_ALU();
     wire invalid_op;
 	
 	// Define a list of opcodes
-    localparam OP_ADD       = 1;        // A + B
-    localparam OP_ADD_CARRY = 2;        // A + B + Carry
-    localparam OP_SUB = 3;              // Subtract B from A
-    localparam OP_INC = 4;              // Increment A
-    localparam OP_DEC = 5;              // Decrement A
-    localparam OP_AND = 6;              // Bitwise AND
-    localparam OP_NOT = 7;              // Bitwise NOT
-    localparam OP_ROL = 8;              // Rotate Left
-    localparam OP_ROR = 9;              // Rotate Right  
+    localparam OP_ADD       = 1;                // A + B
+    localparam OP_ADD_CARRY = 2;                // A + B + Carry
+    localparam OP_SUB       = 3;                // Subtract B from A
+    localparam OP_INC       = 4;                // Increment A
+    localparam OP_DEC       = 5;                // Decrement A
+    localparam OP_AND       = 6;                // Bitwise AND
+    localparam OP_NOT       = 7;                // Bitwise NOT
+    localparam OP_ROL       = 8;                // Rotate Left
+    localparam OP_ROR       = 9;                // Rotate Right  
     integer success_count = 0, error_count = 0, test_count = 0, i = 0;
 
     // Instantiate the DUT (8bit ALU)
@@ -43,12 +43,12 @@ module tb_ALU();
     );
     
 	// This is used to model the ALU behavior at testbench level for creating the expected data.
-	// model_ALU = {invalid_op, parity, zero, borrow, carry_out, [BUS_WIDTH-1:0] y}
-	// The size of model_ALU is BUS_WIDTH-1+5 = BUS_WIDTH+4	
-	function [BUS_WIDTH+4:0] model_ALU(input [3:0] opcode, 
-	                                   input [BUS_WIDTH - 1 : 0] a,
-					                   input [BUS_WIDTH - 1 : 0] b,
-					                   input carry_in);
+	// model_ALU = {invalid_op, parity, zero, borrow, carry_out, [BUS_WIDTH - 1 : 0] y}
+	// The size of model_ALU is BUS_WIDTH - 1 + 5 = BUS_WIDTH + 4	
+	function [BUS_WIDTH + 4 : 0] model_ALU(input [3:0] opcode, 
+	                                       input [BUS_WIDTH - 1 : 0] a,
+					                       input [BUS_WIDTH - 1 : 0] b,
+					                       input carry_in);
 		// Local variables used to model the ALU behavior
 	    reg [BUS_WIDTH  - 1 : 0] y; 
         reg carry_out;
@@ -69,7 +69,7 @@ module tb_ALU();
                 OP_NOT        :  begin y = ~a; end
                 OP_ROL        :  begin y = {a[BUS_WIDTH - 2 : 0], a[BUS_WIDTH - 1]}; end
                 OP_ROR        :  begin y = {a[0], a[BUS_WIDTH - 1 : 1]}; end
-                default: begin invalid_op = 1; y = 0; carry_out = 0; borrow = 0; end
+                default       :  begin invalid_op = 1; y = 0; carry_out = 0; borrow = 0; end
             endcase
 		    
 		    parity = ^y; 
@@ -83,7 +83,7 @@ module tb_ALU();
 	task compare_data(input [BUS_WIDTH + 4 : 0] expected_ALU, input [BUS_WIDTH + 4 : 0] observed_ALU); 
 	    begin
 		   
-		    if (expected_ALU === observed_ALU) begin // use case equality opearator
+		    if (expected_ALU === observed_ALU) begin            // use case equality opearator
 				$display($time, " SUCCESS \t EXPECTED invalid_op = %0d, parity = %b, zero = %b, borrow = %b, carry_out = %b, y = %b", 
 				                  expected_ALU[BUS_WIDTH + 4], expected_ALU[BUS_WIDTH + 3], expected_ALU[BUS_WIDTH + 2],
 								  expected_ALU[BUS_WIDTH + 1], expected_ALU[BUS_WIDTH], expected_ALU[BUS_WIDTH - 1 : 0]);
@@ -122,7 +122,7 @@ module tb_ALU();
 			$display($time, " TEST%0d opcode = %0d, a = %0d, b = %0d, carry_in = %0b", i, opcode, a, b, carry_in);
 		    compare_data(model_ALU(opcode, a, b, carry_in), {invalid_op, parity, zero, borrow, carry_out, y});
 			
-			#2; // wait some time before the next test
+			#2;                                                 // wait some time before the next test
 		end
 	   
         // Print statistics 
