@@ -13,7 +13,7 @@ module rom
 	// Load the ROM with data from rom_init.hex
 	// Relative location depends on the Modelsim project location
 	initial begin
-	    $readmemh("../rom_init.hex", rom, 0, DEPTH - 1);
+	    $readmemh("rom_init.hex", rom, 0, DEPTH - 1);
 	end
 
     // Read is synchronous
