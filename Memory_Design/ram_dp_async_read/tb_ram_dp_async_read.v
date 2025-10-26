@@ -13,7 +13,7 @@ module tb_ram_dp_async_read();
     wire [WIDTH - 1 : 0] data_rd;
     
     integer i;
-	integer num_tests = 0;                          // how many tests to perform     
+	integer num_tests = 0;                                                          // how many tests to perform     
     integer test_count = 0;
     integer success_count = 0;
     integer error_count = 0;
