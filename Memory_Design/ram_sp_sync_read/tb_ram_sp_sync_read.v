@@ -3,10 +3,10 @@
 module tb_ram_sp_sync_read();
 	// Testbench variables
     reg clk = 0;
-	reg [7:0] data_in;                          // 8bit intput word
+	reg [7:0] data_in;                          // 8 bit intput word
 	reg [3:0] address;                          // for 16 locations
 	reg write_en;                               // active high
-	wire [7:0] data_out;                        // 8bit output word
+	wire [7:0] data_out;                        // 8 bit output word
 	reg [1:0] delay;
 	reg [7:0] wr_data;
 	integer success_count, error_count, test_count;
@@ -16,10 +16,10 @@ module tb_ram_sp_sync_read();
 	ram_sp_sync_read RAM0
 	(
         .clk     (clk     ),
-	    .data_in (data_in ),                    // 8bit intput word
+	    .data_in (data_in ),                    // 8 bit intput word
 	    .address (address ),                    // for 32 locations
 	    .write_en(write_en),                    // active high
-	    .data_out(data_out)                     // 8bit output word
+	    .data_out(data_out)                     // 8 bit output word
     );
 	
 	// We will use no outputs as we will use the global variables
