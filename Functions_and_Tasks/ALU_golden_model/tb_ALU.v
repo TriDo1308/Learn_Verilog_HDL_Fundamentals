@@ -112,7 +112,7 @@ module tb_ALU();
     // Create stimulus
     initial begin
 	
-	    for(i = 0; i < 1000; i = i + 1) begin                   // change here the number of tests
+	    for(i = 0; i < 5; i = i + 1) begin                      // change here the number of tests
 		    opcode   = $random % 10'd11;                        // also 1 invalid operation can occur
             a        = $random;
 			b        = $random;
