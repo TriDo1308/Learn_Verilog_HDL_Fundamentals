@@ -1,7 +1,7 @@
 module fifo_sync
     // Parameters section
     #(parameter FIFO_DEPTH = 8,
-	 parameter DATA_WIDTH = 32)
+	  parameter DATA_WIDTH = 32)
     // Ports section   
 	(input clk, 
      input rst_n,

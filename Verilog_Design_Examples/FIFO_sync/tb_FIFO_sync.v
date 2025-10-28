@@ -1,6 +1,6 @@
 `timescale 1us/1ns
+
 module tb_fifo_sync();
-	
 	// Testbench variables
 	parameter FIFO_DEPTH = 8;
 	parameter DATA_WIDTH = 32;
@@ -10,7 +10,7 @@ module tb_fifo_sync();
     reg wr_en;
     reg rd_en;
     reg [DATA_WIDTH - 1 : 0] data_in;
-    wire [DATA_WIDTH -1 : 0] data_out;
+    wire [DATA_WIDTH - 1 : 0] data_out;
 	wire empty;
 	wire full;
 	
@@ -33,7 +33,7 @@ module tb_fifo_sync();
         .full    (full    )
     );
 
-    task write_data(input [DATA_WIDTH-1:0] d_in);
+    task write_data(input [DATA_WIDTH - 1 : 0] d_in);
 	    begin
 		    @(posedge clk);                                             // sync to positive edge of clock
 			cs = 1; wr_en = 1;
@@ -49,7 +49,6 @@ module tb_fifo_sync();
 		    @(posedge clk);                                             // sync to positive edge of clock
 			cs = 1; rd_en = 1;
 			@(posedge clk);
-			#0.1;
 		    $display($time, " read_data data_out = %0d", data_out);
 		    cs = 1; rd_en = 0;
 		end
