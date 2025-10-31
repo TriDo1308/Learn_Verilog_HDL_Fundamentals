@@ -1,7 +1,7 @@
-//==================================================================
-// STATE TRANSITION TABLE
-//==================================================================
 /*
+=============================================================================
+  STATE TRANSITION TABLE
+=============================================================================
 +=================+======================+==============+===================+
 | Current State   | Input Condition      | Next State   | Output            |
 +=================+======================+==============+===================+  
@@ -18,36 +18,35 @@
 | WRITE_BYTE12    | done_out == 0        | READ_BYTE0   | ram_out_we = 1    |
 +=================+======================+==============+===================+ 
 
-NOTE: 
+NOTE:
 - ram_pointer increments in both READ_BYTE0 and READ_BYTE1 states
 - Each iteration processes 2 bytes from RAM_IN → 1 word to RAM_OUT
 - fsm_mem_out_addr_wr = ram_pointer >> 1 (address mapping for 16-depth RAM_OUT)
 - done_out set when ram_pointer reaches 31 (after processing all 32 bytes)
 */
-//==================================================================
 
 module top_fsm(
     input clk,
     input rst_n,
     // Signals for the input RAM
     input         ram_in_we,
-    input  [4:0]  ram_in_addr_wr, 
+    input  [4:0]  ram_in_addr_wr,
     input  [7:0]  ram_in_data_wr,
     // Signals for the output RAM
-    input  [3:0]  ram_out_addr_rd, 
-    output [15:0] ram_out_data_rd,     
+    input  [3:0]  ram_out_addr_rd,
+    output [15:0] ram_out_data_rd,
     // FSM control signals
     input         opmode_in,
     output reg    done_out
 );
 
-    // instantiate the FSM
-    parameter [3:0]                                 //FSM One Hot coding
-                   IDLE           = 4'b0001,
-                   READ_BYTE0     = 4'b0010,
-	  			   READ_BYTE1     = 4'b0100,
-                   WRITE_BYTE12   = 4'b1000;
-                   
+    // Instantiate the FSM
+    // FSM One Hot coding
+    parameter [3:0] IDLE           = 4'b0001,
+                    READ_BYTE0     = 4'b0010,
+	  			    READ_BYTE1     = 4'b0100,
+                    WRITE_BYTE12   = 4'b1000;
+
     // Declare logic for the state machine
     reg  [3:0] state, next_state;
 	
@@ -62,12 +61,12 @@ module top_fsm(
     reg ram_out_we;
 
     // Instantiate the RAM modules
-    ram_dp_async_read 
+    ram_dp_async_read
     #(.WIDTH(8), .DEPTH(32))
     RAM_IN
     (
         .clk    (clk               ), 
-        .we     (ram_in_we         ), 
+        .we_n   (ram_in_we         ), 
         .addr_wr(ram_in_addr_wr    ), 
         .data_wr(ram_in_data_wr    ),
         .addr_rd(fsm_mem_in_addr_rd),
@@ -79,7 +78,7 @@ module top_fsm(
     RAM_OUT
     (
         .clk    (clk                                   ), 
-        .we     (ram_out_we                            ), 
+        .we_n   (ram_out_we                            ), 
         .addr_wr(fsm_mem_out_addr_wr                   ), 
         .data_wr({read_byte1_buffer, read_byte0_buffer}),
         .addr_rd(ram_out_addr_rd                       ),
@@ -126,7 +125,7 @@ module top_fsm(
         endcase
     end
 
-    //State sequencer logic
+    // State sequencer logic
 	always @(posedge clk or negedge rst_n)
 	begin
 		if(!rst_n)
@@ -135,7 +134,7 @@ module top_fsm(
 		    state <= next_state;
 	end    
     
-    //Declare internal counter logic 
+    // Declare internal counter logic 
     always @(posedge clk or negedge rst_n)
     begin
         if (!rst_n)
