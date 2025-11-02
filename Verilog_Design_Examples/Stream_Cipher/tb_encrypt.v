@@ -94,7 +94,7 @@ module tb_encrypt( );
 
 	/*always @(data_out)                        // used to collect output data from log
 	begin
-	   $display($time,(" data_out= %x"),data_out);
+	   $display($time,(" data_out = %x"), data_out);
 	end */
 	
 	task load_new_seed;

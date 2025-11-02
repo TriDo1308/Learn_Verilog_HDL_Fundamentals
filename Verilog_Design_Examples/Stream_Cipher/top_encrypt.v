@@ -38,7 +38,7 @@ module top_encrypt(
 	always @(posedge clk or negedge rst_n)
 	begin
 	    if(!rst_n)
-		    data_out <=0;
+		    data_out <= 0;
 	    else if (encrypt_en_dly)
 		    data_out[7:0] <= prng[7:0] ^ data_in_dly[7:0];
 	end

@@ -1,7 +1,7 @@
 module top_encrypt_golden(
 	input rst_n,
 	input clk,
-	ipnut load_seed,
+	input load_seed,
 	input [7:0] seed_in,
 	input encrypt_en,
 	input [7:0] data_in,
@@ -36,9 +36,9 @@ module top_encrypt_golden(
 	always @(posedge clk or negedge rst_n)
 	begin
 	   if(!rst_n) begin
-		  encrypt_en_dly <=0;
-		  data_in_dly    <=0;
-		  data_out       <=0;
+		  encrypt_en_dly <= 0;
+		  data_in_dly    <= 0;
+		  data_out       <= 0;
 	   end else begin
 		  encrypt_en_dly   <= encrypt_en;
 		  data_in_dly[7:0] <= data_in[7:0];

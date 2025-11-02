@@ -19,6 +19,4 @@ module prng(input rst_n,
 	    else if (encrypt_en)
             prng <= {prng[6:0], feedback};	
 	end
-
 endmodule
-
