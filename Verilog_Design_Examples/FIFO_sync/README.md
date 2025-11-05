@@ -4,7 +4,7 @@
 
 This project implements a synchronous First-In, First-Out (FIFO) buffer in Verilog. The FIFO is designed to store and retrieve data in a sequential manner, where the first data element written into the buffer is the first one to be read out. It features configurable data width and depth, along with `empty` and `full` status flags.
 
-## Project Structure
+## 📁 Project Structure
 
 -   `FIFO_sync.v`: The main module implementing the synchronous FIFO logic.
 -   `tb_FIFO_sync.v`: The testbench for `FIFO_sync.v`, used to verify its functionality through various scenarios.
@@ -12,7 +12,7 @@ This project implements a synchronous First-In, First-Out (FIFO) buffer in Veril
 -   `Vivado_simulation_Scenario_2.png`: Simulation waveform for Scenario 2 (continuous write/read).
 -   `Vivado_simulation_Scenario_3.png`: Simulation waveform for Scenario 3 (FIFO full condition).
 
-## Module Description: `FIFO_sync.v`
+## 📤 Module Description: `FIFO_sync.v`
 
 This module defines a synchronous FIFO buffer.
 
@@ -39,7 +39,7 @@ This module defines a synchronous FIFO buffer.
 -   **Empty Condition**: `empty` is asserted when `read_pointer` equals `write_pointer`.
 -   **Full Condition**: `full` is asserted when the MSB of `read_pointer` is different from the MSB of `write_pointer`, but their lower bits are identical. This indicates that the pointers have wrapped around and are one position apart in the extended address space.
 
-## Testbench Description: `tb_FIFO_sync.v`
+## 📤 Testbench Description: `tb_FIFO_sync.v`
 
 This testbench verifies the functionality of the `fifo_sync` module by simulating various write and read operations.
 

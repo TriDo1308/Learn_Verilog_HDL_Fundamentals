@@ -4,7 +4,7 @@
 
 This project implements a Finite State Machine (FSM) in Verilog to transfer data between two SRAMs of different sizes. Specifically, it transfers data from an input SRAM (RAM_IN) with a configuration of 8 bits x 32 locations to an output SRAM (RAM_OUT) with a configuration of 16 bits x 16 locations. The FSM reads 8-bit bytes from RAM_IN, combines two consecutive bytes into a 16-bit word, and writes this word into RAM_OUT.
 
-## Project Structure
+## 📁 Project Structure
 
 -   `ram_dp_async_read.v`: A dual-port RAM module with synchronous write and asynchronous read capabilities. This module is used for both RAM_IN and RAM_OUT.
 -   `top_fsm.v`: The top-level module containing the FSM logic for data transfer. It instantiates two `ram_dp_async_read` modules.
@@ -12,7 +12,7 @@ This project implements a Finite State Machine (FSM) in Verilog to transfer data
 
 ## Module Descriptions
 
-### `ram_dp_async_read.v`
+### 📤 `ram_dp_async_read.v`
 
 This module defines a generic dual-port RAM.
 
@@ -29,7 +29,7 @@ This module defines a generic dual-port RAM.
 -   `data_wr`: Data input for write operations.
 -   `data_rd`: Data output for asynchronous read operations.
 
-### `top_fsm.v`
+### 📤 `top_fsm.v`
 
 This module implements the data transfer FSM.
 
@@ -63,7 +63,7 @@ The FSM operates in four states:
 -   `opmode_in`: Input signal to initiate the data transfer (active high).
 -   `done_out`: Output signal indicating the completion of the data transfer (active high, set when `ram_pointer` reaches 31).
 
-### `tb_top_fsm.v`
+### 📤 `tb_top_fsm.v`
 
 This testbench verifies the functionality of the `top_fsm` module.
 
