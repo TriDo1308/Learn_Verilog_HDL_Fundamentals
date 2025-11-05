@@ -9,15 +9,13 @@ It follows the classic UART framing format:
 
 The `CLKS_PER_BIT` parameter defines how many system clock cycles correspond to one UART bit period:
 
-$$
-\mathrm{CLKS\_PER\_BIT} = \frac{f_{clk}}{\text{baud\_rate}}
-$$
+> CLKS_PER_BIT = Frequency of CLK / Baud Rate
 
 **Example:**  
 If `f_clk = 25 MHz` and `baud_rate = 115200`, then  
 `CLKS_PER_BIT ≈ 25,000,000 / 115,200 ≈ 217`.
 
-> **Note / Credit:**  
+*  **Note / Credit:**  
 > The UART transmitter and receiver modules are authored by **Pham Hoai Luan**.  
 > These modules are reused here with full author attribution.
 
