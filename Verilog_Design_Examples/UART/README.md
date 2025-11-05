@@ -1,5 +1,10 @@
 # UART (Universal Asynchronous Receiver/Transmitter)
 
+*  **Note / Credit:**  
+> The UART transmitter and receiver modules are authored by **Pham Hoai Luan, Ph.D**.  
+> These modules are reused here with full author attribution.
+
+
 ## 🧭 Overview
 
 This project implements a simple UART **transmitter** and **receiver** pair in **Verilog HDL**.  
@@ -14,10 +19,6 @@ The `CLKS_PER_BIT` parameter defines how many system clock cycles correspond to 
 **Example:**  
 If `f_clk = 25 MHz` and `baud_rate = 115200`, then  
 `CLKS_PER_BIT ≈ 25,000,000 / 115,200 ≈ 217`.
-
-*  **Note / Credit:**  
-> The UART transmitter and receiver modules are authored by **Pham Hoai Luan**.  
-> These modules are reused here with full author attribution.
 
 ---
 
