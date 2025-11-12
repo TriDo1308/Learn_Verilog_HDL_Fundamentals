@@ -135,23 +135,3 @@ graph TD
     classDef top fill:#9013fe,stroke:#fff,color:#fff
     classDef core fill:#b8e986,stroke:#000,color:#000
 ```
-
-## 📊 Example Operation Sequence
-
-1. User sends two 8-bit signed operands via UART.
-2. System receives and stores operands.
-3. Controller triggers computation.
-4. Datapath adds operands and outputs result.
-5. Result is sent back via UART.
-6. System waits for next input.
-
-## 💡 Fixed-Point Format
-
-- Operands and result use Q4.3 signed format (4 integer bits, 3 fractional bits).
-- Allows simple arithmetic for fractional values in hardware.
-
-## 🛠️ How to Use
-
-- Connect UART interface to FPGA/ASIC running this IP.
-- Send two signed 8-bit values (Q4.3 format) via UART.
-- Receive the computed sum via UART.
