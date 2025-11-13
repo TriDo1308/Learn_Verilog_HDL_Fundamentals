@@ -79,4 +79,5 @@ module Core (
 	assign Tx_DV_out			= Tx_DV_out_w;
 	assign Tx_Byte_out			= c_out_w;
 	assign c_out				= c_out_w;
+
 endmodule
