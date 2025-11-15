@@ -2,19 +2,25 @@ module Datapath (
     input  wire                 CLK,
 	input  wire					RST,
 	input  wire					En_in,
-    input  wire signed [7:0]    a_in,        	// input A (Q4.3)
-    input  wire signed [7:0]    b_in,        	// input B (Q4.3)
-    output reg  signed [7:0]    c_out,       	// output C (Q4.3)
+    input  wire signed [7:0]    a_in,        			// input A (Q4.3)
+    input  wire signed [7:0]    b_in,        			// input B (Q4.3)
+    output reg  signed [7:0]    c_out,       			// output C (Q4.3)
 	output reg 					c_valid_out
 );
 
-    // ---------------- Internal wire ----------------
+    //==================================================//
+    //                   	Wire                      	//
+    //==================================================//
     wire signed [8:0] 			sum_w;   
 
-    // ---------------- Combinational logic ----------------
+    //==================================================//
+    //              Combinational Circuits              //
+    //==================================================//
     assign sum_w 				= a_in + b_in;
 
-    // ---------------- Sequential output register ----------------
+    //==================================================//
+    //              	Sequential Circuits             //
+    //==================================================//
     always @(posedge CLK or negedge RST) begin
 		if(RST == 0) begin
 			c_out				<= 0;

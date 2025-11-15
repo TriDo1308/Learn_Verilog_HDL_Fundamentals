@@ -1,4 +1,4 @@
-# Adder Fixed Point
+# Adder Fixed Point 8 bits
 
 ## Overview
 
