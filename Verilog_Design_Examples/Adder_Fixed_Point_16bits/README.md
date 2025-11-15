@@ -113,18 +113,11 @@ Connects UART pins and exposes `LED_out` for debug.
 
 ```mermaid
 graph TD
-    %% External Input
     A[UART rx - Serial Input] --> B[receiver.v - UART Receiver]
-
-    %% Data Flow through Core
     B -->|Rx_Byte + Rx_DV| C["Core.v<br/>(aggregator)"]
-
-    %% Inside Core
-    C --> E["Controller.v<br/>(FSM: IDLE/LOAD/EXE/SEND)"]
+    C --> E["Controller.v<br/>"]
     C --> D["Datapath.v<br/>(Add Q4.3 16-bit + Clamp)"]
     C --> MEM["Input_Memory.v<br/>(Save A/B as 16-bit)"]
-
-    %% Internal connections
     E -->|Load_MSB_a_en| MEM
     E -->|Load_LSB_a_en| MEM
     E -->|Load_MSB_b_en| MEM
@@ -132,28 +125,20 @@ graph TD
     MEM -->|a_out, b_out| D
     E -->|En_out| D
     D -->|c_out + c_valid| E
-
-    %% Output: Send MSB then LSB
     E -->|Tx_DV + MLSB_SEL| F["transmitter.v<br/>(UART Transmitter)"]
-    D -->|c_out[15:8] or [7:0]| F
+    D -->|"c_out MSB<br/>then LSB"| F
     F --> G[UART tx - Serial Output]
-
-    %% Top-level
     H["Add_IP.v<br/>(Top-Level Wrapper)"] -->|Instantiates| B
     H -->|Instantiates| C
     H -->|Instantiates| F
-
-    %% Debug
     D -.->|Debug| I["LED_out = c_out[15:8]"]
 
-    %% Styling
     classDef uart fill:#50e3c2,stroke:#000,color:#000
     classDef mem fill:#4ecdc4,stroke:#000,color:#fff
     classDef dp fill:#f7dc6f,stroke:#000,color:#000
     classDef ctrl fill:#ff6b6b,stroke:#000,color:#fff
     classDef top fill:#9013fe,stroke:#fff,color:#fff
     classDef core fill:#b8e986,stroke:#000,color:#000
-
     class A,B,F,G uart
     class MEM mem
     class D dp
