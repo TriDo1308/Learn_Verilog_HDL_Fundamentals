@@ -76,8 +76,6 @@ module Controller (
 			default: next_state_r = IDLE;
 		endcase
 	end
-
-	
 	
 	//==================================================//
     //              	Sequential Circuits             //

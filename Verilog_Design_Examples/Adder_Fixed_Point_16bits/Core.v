@@ -85,7 +85,7 @@ module Core (
     //              		Output			            //
     //==================================================//
 	assign Tx_DV_out			= Tx_DV_out_w;
-	assign Tx_Byte_out			= (MLSB_SEL_Tx_Byte_out_w)? c_out_w[7:0] : c_out_w[15:8];
+	assign Tx_Byte_out			= (MLSB_SEL_Tx_Byte_out_w) ? c_out_w[7:0] : c_out_w[15:8];
 	assign c_out				= c_out_w[15:8];
 
 endmodule
