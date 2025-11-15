@@ -21,7 +21,7 @@ The repository is organized into several directories, each focusing on a specifi
 
 ## Course Reference
 
-This repository is a result of self-study based on the following Udemy course:
+This repository is a result of self-study based on the following Udemy course and includes several hands-on practice exercises implemented on the **Xilinx ZCU102 FPGA board**:
 
 *   **Course Title:** Verilog HDL Fundamentals for Digital Design and Verification
 *   **Platform:** Udemy
