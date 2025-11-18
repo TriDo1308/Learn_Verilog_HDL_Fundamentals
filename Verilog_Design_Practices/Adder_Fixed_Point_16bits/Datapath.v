@@ -14,9 +14,9 @@ module Datapath (
     input  wire                 CLK,
 	input  wire					RST,
 	input  wire					En_in,
-    input  wire signed [15:0]   a_in,        			// input A (Q4.3)
-    input  wire signed [15:0]   b_in,        			// input B (Q4.3)
-    output reg  signed [15:0]   c_out,       			// output C (Q4.3)
+    input  wire signed [15:0]   a_in,        			// input A (Q8.7)
+    input  wire signed [15:0]   b_in,        			// input B (Q8.7)
+    output reg  signed [15:0]   c_out,       			// output C (Q8.7)
 	output reg 					c_valid_out
 );
 
