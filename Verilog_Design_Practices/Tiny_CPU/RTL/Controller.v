@@ -114,7 +114,7 @@ module Controller (
 
 		end
 		else begin
-			//load_counter_r
+			// load_counter_r
 			if(current_state_r == EXE) 
 				load_counter_r <= 0;
 			else if((current_state_r == IDLE || current_state_r == LOAD) && Rx_DV_in) 
@@ -122,7 +122,7 @@ module Controller (
 			else
 				load_counter_r	<= load_counter_r;
 			
-			//send_counter_r
+			// send_counter_r
 			if(current_state_r == IDLE) 
 				send_counter_r <= 0;
 			else if(current_state_r == SEND && send_request_r) 
@@ -130,7 +130,7 @@ module Controller (
 			else
 				send_counter_r	<= send_counter_r;
 			
-			if(current_state_r == SEND && (c_valid_in || Tx_Done_in) && (send_counter_r <2))
+			if(current_state_r == SEND && (c_valid_in || Tx_Done_in) && (send_counter_r < 2))
 				send_request_r	<= 1;
 			else 
 				send_request_r	<= 0;
