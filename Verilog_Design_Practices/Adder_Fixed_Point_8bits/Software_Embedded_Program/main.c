@@ -32,13 +32,11 @@ static int setup_serial(const char *device) {
     return fd;
 }
 
-// In ra dạng nhị phân 8 bit
 void print_binary8(uint8_t val) {
     for (int i = 7; i >= 0; i--)
         printf("%d", (val >> i) & 1);
 }
 
-// Chuyển float → uint8_t (1 sign, 4 int, 3 frac)
 uint8_t float_to_fixed8(float x) {
     if (x > MAX_VAL) x = MAX_VAL;
     if (x < MIN_VAL) x = MIN_VAL;
@@ -46,7 +44,6 @@ uint8_t float_to_fixed8(float x) {
     return (uint8_t)(fixed & 0xFF);
 }
 
-// Chuyển uint8_t → float (1 sign, 4 int, 3 frac)
 float fixed8_to_float(uint8_t val) {
     int8_t s = (int8_t)val; // sign-extend
     return (float)s / SCALE;
@@ -86,7 +83,6 @@ int main(void) {
     int fd = setup_serial(SERIAL_PORT);
     if (fd < 0) return 1;
 
-    // Gửi a và b
     uint8_t buf[2] = {a_fixed, b_fixed};
     if (write(fd, buf, 2) != 2) {
         perror("write");
@@ -96,7 +92,6 @@ int main(void) {
 
     printf("\nSent via UART...\n");
 
-    // Đọc lại c từ UART (8-bit)
     uint8_t c_fixed;
     ssize_t n = read(fd, &c_fixed, 1);
     if (n != 1) {
