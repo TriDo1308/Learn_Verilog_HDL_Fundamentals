@@ -17,7 +17,7 @@ The repository is organized into several directories, each focusing on a specifi
 *   **`Sequential_Design/`**: Features sequential logic circuits, including D flip-flops, latches, counters, clock dividers, and shift registers.
 *   **`State_Machines/`**: Contains examples of Finite State Machine (FSM) implementations.
 *   **`Structural_Design/`**: Focuses on structural modeling using gate-level primitives and module instantiations.
-*   **`Verilog_Design_Practices/`**: A collection of more complex design examples, such as the Stream Cipher and Data Transfer FSM projects.
+*   **`Verilog_Design_Practices/`**: A collection of more complex design practices.
 
 ## Course Reference
 
