@@ -1,6 +1,6 @@
 module Controller (
     input  wire 				CLK,
-    input  wire 				RST,        			// active-low synchronous reset
+    input  wire 				RST,        			// Active-low synchronous reset
 	/* From RX UART Interface*/	
 	input  wire	signed [7:0] 	Rx_Byte_in,
     input  wire    				Rx_DV_in,

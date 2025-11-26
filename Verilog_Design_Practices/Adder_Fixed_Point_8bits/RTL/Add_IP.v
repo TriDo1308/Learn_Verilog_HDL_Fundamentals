@@ -1,6 +1,6 @@
 module Add_IP (
     input  wire 				CLK,
-    input  wire 				RST,        			// active-low synchronous reset
+    input  wire 				RST,        			// Active-low synchronous reset
 	/* From RX UART Pin*/	
 	input  wire        			Rx_in,
 	/* To TX UART Pin*/	
@@ -36,7 +36,7 @@ module Add_IP (
 	Core core
 	(
 		.CLK        (CLK          ),
-		.RST        (RST          ),        			// active-low synchronous reset
+		.RST        (RST          ),        			// Active-low synchronous reset
 		/* From RX UART Interface*/	
 		.Rx_Byte_in (Rx_Byte_out_w),
 		.Rx_DV_in   (Rx_DV_out_w  ),

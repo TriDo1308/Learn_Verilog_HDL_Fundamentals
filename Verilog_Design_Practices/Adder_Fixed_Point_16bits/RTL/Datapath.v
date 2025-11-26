@@ -1,22 +1,10 @@
-/*
- *-----------------------------------------------------------------------------
- * Title       : Datapath
- * Description : 8-bit signed fixed-point adder with clock and reset
- * Author      : Pham Hoai Luan
- * Date        : 2025-11-04
- *-----------------------------------------------------------------------------
- * Format      : Q4.3 (1 sign, 4 integer, 3 fractional)
- * Function    : c_out_ = a_in + b_in  (saturation)
- *-----------------------------------------------------------------------------
- */
-
 module Datapath (
     input  wire                 CLK,
 	input  wire					RST,
 	input  wire					En_in,
-    input  wire signed [15:0]   a_in,        			// input A (Q8.7)
-    input  wire signed [15:0]   b_in,        			// input B (Q8.7)
-    output reg  signed [15:0]   c_out,       			// output C (Q8.7)
+    input  wire signed [15:0]   a_in,        			// Input A (Q8.7)
+    input  wire signed [15:0]   b_in,        			// Input B (Q8.7)
+    output reg  signed [15:0]   c_out,       			// Output C (Q8.7)
 	output reg 					c_valid_out
 );
 

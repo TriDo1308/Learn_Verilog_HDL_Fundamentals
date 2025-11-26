@@ -1,6 +1,6 @@
 module Core (
     input  wire 				CLK,
-    input  wire 				RST,        			// active-low synchronous reset
+    input  wire 				RST,        			// Active-low synchronous reset
 	/* From RX UART Interface*/	
 	input  wire	signed [7:0] 	Rx_Byte_in,
     input  wire    				Rx_DV_in,
@@ -30,7 +30,7 @@ module Core (
 	Controller controller
 	(
 		.CLK                 (CLK                   ),
-		.RST                 (RST                   ),	// active-low synchronous reset
+		.RST                 (RST                   ),	// Active-low synchronous reset
 		/* From RX UART Interface*/	
 		.Rx_Byte_in          (Rx_Byte_in            ),
 		.Rx_DV_in            (Rx_DV_in              ),
@@ -75,9 +75,9 @@ module Core (
 		.CLK        (CLK         ),
 		.RST        (RST         ),
 		.En_in      (En_out_w    ),
-		.a_in       (a_out_w     ),        				// input A (Q4.3)
-		.b_in       (b_out_w     ),        				// input B (Q4.3)
-		.c_out      (c_out_w     ),       				// output C (Q4.3)
+		.a_in       (a_out_w     ),        				// Input A (Q4.3)
+		.b_in       (b_out_w     ),        				// Input B (Q4.3)
+		.c_out      (c_out_w     ),       				// Output C (Q4.3)
 		.c_valid_out(c_valid_in_w)
 	);
 
