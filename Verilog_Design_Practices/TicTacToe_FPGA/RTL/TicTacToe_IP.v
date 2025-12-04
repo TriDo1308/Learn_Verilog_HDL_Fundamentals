@@ -48,8 +48,9 @@ module TicTacToe_IP (
     //==================================================//
     //              		Output			            //
     //==================================================//
-    assign LED = {board_debug[8], board_debug[7], board_debug[6],
-                  board_debug[5],                 board_debug[3],
-                  board_debug[2], board_debug[1], board_debug[0]};
+//    assign LED = {board_debug[7], board_debug[6], board_debug[5],
+//                  board_debug[4],                 board_debug[3],
+//                  board_debug[2], board_debug[1], board_debug[0]};
+    assign LED = board_debug;
 
 endmodule
