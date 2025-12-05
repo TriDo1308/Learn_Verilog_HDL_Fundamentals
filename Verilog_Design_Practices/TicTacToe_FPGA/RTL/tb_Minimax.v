@@ -5,7 +5,7 @@ module tb_TicTacToe_Comprehensive();
     // Signals
     // ==============================================================
     reg CLK = 0;
-    reg RST = 0; // active-low
+    reg RST = 0;
     reg [18:0] board_flat;
     reg request = 0;
     wire [3:0] best_move;
@@ -15,15 +15,14 @@ module tb_TicTacToe_Comprehensive();
     // DUT
     // ==============================================================
     Minimax dut (
-        .CLK (CLK),
-        .RST (RST),
-        .board_flat (board_flat),
-        .request (request),
-        .best_move (best_move),
-        .valid (valid)
+        .CLK       (CLK       ),
+        .RST       (RST       ),
+        .board_flat(board_flat),
+        .request   (request   ),
+        .best_move (best_move ),
+        .valid     (valid     )
     );
     
-    // 25 MHz clock ? 40ns period
     always #20 CLK = ~CLK;
     
     // ==============================================================
@@ -43,7 +42,7 @@ module tb_TicTacToe_Comprehensive();
     endtask
     
     // ==============================================================
-    // Helper task: set cell (pos 0-8) to value (00=EMPTY/01=X/10=O)
+    // Helper task: set cell (pos 0-8) to value (00 = EMPTY / 01 = X / 10 = O)
     // ==============================================================
     task set_cell;
         input [3:0] pos;
@@ -81,9 +80,9 @@ module tb_TicTacToe_Comprehensive();
         end
     endtask
     
-    // ==============================================================
-    // Task ki?m tra k?t qu? v?i kh? n?ng ch?p nh?n nhi?u ?áp án
-    // ==============================================================
+    // =================================================================
+    // Task to check results with the ability to accept multiple answers
+    // =================================================================
     task check_result;
         input [3:0] expected_move;
         input [79:0] test_name;
@@ -100,12 +99,12 @@ module tb_TicTacToe_Comprehensive();
             end else if (valid) begin
                 $display("? FAIL: got %0d, expected %0d", best_move, expected_move);
             end else begin
-                $display("? FAIL: valid=0, no move returned");
+                $display("? FAIL: valid = 0, no move returned");
             end
         end
     endtask
     
-    // Task cho các tr??ng h?p ch?p nh?n nhi?u ?áp án ?úng
+    // Tasks for cases that accept multiple correct answers
     task check_result_multi;
         input [3:0] move1, move2, move3;
         input [79:0] test_name;
@@ -124,7 +123,7 @@ module tb_TicTacToe_Comprehensive();
                 $display("? FAIL: got %0d, expected one of: %0d, %0d, %0d", 
                          best_move, move1, move2, move3);
             end else begin
-                $display("? FAIL: valid=0, no move returned");
+                $display("? FAIL: valid = 0, no move returned");
             end
         end
     endtask
@@ -133,9 +132,9 @@ module tb_TicTacToe_Comprehensive();
     // Main test sequence
     // ==============================================================
     initial begin
-        $display("\n??????????????????????????????????????????????????????????");
-        $display("?     COMPREHENSIVE MINIMAX TIC-TAC-TOE TESTBENCH       ?");
-        $display("??????????????????????????????????????????????????????????\n");
+        $display("\n==========================================================");
+        $display("|     COMPREHENSIVE MINIMAX TIC-TAC-TOE TESTBENCH       |");
+        $display("==========================================================\n");
         
         // Reset
         RST = 0;
@@ -146,57 +145,45 @@ module tb_TicTacToe_Comprehensive();
         // ============================================================
         // CATEGORY 1: BASIC SCENARIOS
         // ============================================================
-        $display("\n???????????????????????????????????????????????????");
+        $display("\n===================================================");
         $display("  CATEGORY 1: BASIC SCENARIOS");
-        $display("???????????????????????????????????????????????????");
+        $display("===================================================");
         
-        // Test 1: Empty board
-//        clear_board();
-//        request = 1;
-//        #20_000_000;
-//        request = 0;
-//        check_result_multi(4, 0, 2, "Empty board - prefer center");
-        
-        // Test 2: One X in corner
         #5000;
         clear_board();
-        set_cell(0, 2'b01); // X at corner
+        set_cell(0, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(4, "X at corner - O takes center");
         
-        // Test 2: One X in corner
         #5000;
         clear_board();
-        set_cell(2, 2'b01); // X at corner
+        set_cell(2, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(4, "X at corner - O takes center");
 
-        // Test 2: One X in corner
         #5000;
         clear_board();
-        set_cell(6, 2'b01); // X at corner
+        set_cell(6, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(4, "X at corner - O takes center");
 
-        // Test 2: One X in corner
         #5000;
         clear_board();
-        set_cell(8, 2'b01); // X at corner
+        set_cell(8, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(4, "X at corner - O takes center");
         
-        // Test 3: One X at center
         #5000;
         clear_board();
-        set_cell(4, 2'b01); // X at center
+        set_cell(4, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
@@ -205,53 +192,49 @@ module tb_TicTacToe_Comprehensive();
         // ============================================================
         // CATEGORY 2: WINNING MOVES FOR O
         // ============================================================
-        $display("\n???????????????????????????????????????????????????");
+        $display("\n===================================================");
         $display("  CATEGORY 2: O CAN WIN (Must take winning move)");
-        $display("???????????????????????????????????????????????????");
+        $display("===================================================");
         
-        // Test 4: O can win horizontally (top row)
         #5000;
         clear_board();
-        set_cell(0, 2'b10); // O
-        set_cell(1, 2'b10); // O
-        set_cell(3, 2'b01); // X
-        set_cell(4, 2'b01); // X
+        set_cell(0, 2'b10);
+        set_cell(1, 2'b10);
+        set_cell(3, 2'b01);
+        set_cell(4, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(2, "O wins at pos 2 (top row)");
         
-        // Test 5: O can win vertically
         #5000;
         clear_board();
-        set_cell(0, 2'b10); // O
-        set_cell(3, 2'b10); // O
-        set_cell(1, 2'b01); // X
-        set_cell(2, 2'b01); // X
+        set_cell(0, 2'b10);
+        set_cell(3, 2'b10);
+        set_cell(1, 2'b01);
+        set_cell(2, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(6, "O wins at pos 6 (left column)");
         
-        // Test 6: O can win diagonally (main diagonal)
         #5000;
         clear_board();
-        set_cell(0, 2'b10); // O
-        set_cell(4, 2'b10); // O
-        set_cell(1, 2'b01); // X
-        set_cell(3, 2'b01); // X
+        set_cell(0, 2'b10);
+        set_cell(4, 2'b10);
+        set_cell(1, 2'b01);
+        set_cell(3, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(8, "O wins at pos 8 (main diagonal)");
         
-        // Test 7: O can win anti-diagonal
         #5000;
         clear_board();
-        set_cell(2, 2'b10); // O
-        set_cell(4, 2'b10); // O
-        set_cell(1, 2'b01); // X
-        set_cell(7, 2'b01); // X
+        set_cell(2, 2'b10);
+        set_cell(4, 2'b10);
+        set_cell(1, 2'b01);
+        set_cell(7, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
@@ -260,49 +243,45 @@ module tb_TicTacToe_Comprehensive();
         // ============================================================
         // CATEGORY 3: BLOCKING MOVES (O must block X from winning)
         // ============================================================
-        $display("\n???????????????????????????????????????????????????");
+        $display("\n===================================================");
         $display("  CATEGORY 3: BLOCKING MOVES");
-        $display("???????????????????????????????????????????????????");
+        $display("===================================================");
         
-        // Test 8: Block X horizontal threat (top row)
         #5000;
         clear_board();
-        set_cell(0, 2'b01); // X
-        set_cell(1, 2'b01); // X
-        set_cell(4, 2'b10); // O
+        set_cell(0, 2'b01);
+        set_cell(1, 2'b01);
+        set_cell(4, 2'b10);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(2, "Block X at pos 2 (top row)");
         
-        // Test 9: Block X vertical threat
         #5000;
         clear_board();
-        set_cell(1, 2'b01); // X
-        set_cell(4, 2'b01); // X
-        set_cell(0, 2'b10); // O
+        set_cell(1, 2'b01);
+        set_cell(4, 2'b01);
+        set_cell(0, 2'b10);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(7, "Block X at pos 7 (middle column)");
         
-        // Test 10: Block X diagonal threat
         #5000;
         clear_board();
-        set_cell(0, 2'b01); // X
-        set_cell(4, 2'b01); // X
-        set_cell(1, 2'b10); // O
+        set_cell(0, 2'b01);
+        set_cell(4, 2'b01);
+        set_cell(1, 2'b10);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(8, "Block X at pos 8 (main diagonal)");
         
-        // Test 11: Block X anti-diagonal
         #5000;
         clear_board();
-        set_cell(2, 2'b01); // X
-        set_cell(6, 2'b01); // X
-        set_cell(0, 2'b10); // O
+        set_cell(2, 2'b01);
+        set_cell(6, 2'b01);
+        set_cell(0, 2'b10);
         request = 1;
         #20_000_000;
         request = 0;
@@ -311,37 +290,25 @@ module tb_TicTacToe_Comprehensive();
         // ============================================================
         // CATEGORY 4: FORK SCENARIOS
         // ============================================================
-        $display("\n???????????????????????????????????????????????????");
+        $display("\n===================================================");
         $display("  CATEGORY 4: FORK SITUATIONS");
-        $display("???????????????????????????????????????????????????");
+        $display("===================================================");
         
-        // Test 12: O creates fork opportunity
         #5000;
         clear_board();
-        set_cell(0, 2'b10); // O
-        set_cell(8, 2'b10); // O
-        set_cell(1, 2'b01); // X
+        set_cell(0, 2'b10);
+        set_cell(8, 2'b10);
+        set_cell(1, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(4, "O creates fork at center");
         
-//        // Test 13: Prevent X fork (opposite corners)
-//        #5000;
-//        clear_board();
-//        set_cell(0, 2'b01); // X
-//        set_cell(8, 2'b01); // X
-//        request = 1;
-//        #20_000_000;
-//        request = 0;
-//        check_result_multi(1, 3, 5, "Block X fork - take edge");
-        
-        // Test 14: X threatens fork at two corners
         #5000;
         clear_board();
-        set_cell(0, 2'b01); // X
-        set_cell(2, 2'b01); // X
-        set_cell(4, 2'b10); // O at center
+        set_cell(0, 2'b01);
+        set_cell(2, 2'b01);
+        set_cell(4, 2'b10);
         request = 1;
         #20_000_000;
         request = 0;
@@ -350,38 +317,36 @@ module tb_TicTacToe_Comprehensive();
         // ============================================================
         // CATEGORY 5: ENDGAME SCENARIOS
         // ============================================================
-        $display("\n???????????????????????????????????????????????????");
+        $display("\n===================================================");
         $display("  CATEGORY 5: ENDGAME SCENARIOS");
-        $display("???????????????????????????????????????????????????");
+        $display("===================================================");
         
-        // Test 15: Almost full board - one move left
         #5000;
         clear_board();
-        set_cell(0, 2'b01); // X
-        set_cell(1, 2'b10); // O
-        set_cell(2, 2'b01); // X
-        set_cell(3, 2'b10); // O
-        set_cell(4, 2'b01); // X
-        set_cell(5, 2'b10); // O
-        set_cell(6, 2'b01); // X
-        set_cell(7, 2'b10); // O
-        // pos 8 empty
+        set_cell(0, 2'b01);
+        set_cell(1, 2'b10);
+        set_cell(2, 2'b01);
+        set_cell(3, 2'b10);
+        set_cell(4, 2'b01);
+        set_cell(5, 2'b10);
+        set_cell(6, 2'b01);
+        set_cell(7, 2'b10);
+
         request = 1;
         #20_000_000;
         request = 0;
         check_result(8, "Only one move left");
         
-        // Test 16: Two moves left - choose wisely
         #5000;
         clear_board();
-        set_cell(0, 2'b10); // O
-        set_cell(1, 2'b01); // X
-        set_cell(2, 2'b10); // O
-        set_cell(3, 2'b01); // X
-        set_cell(5, 2'b10); // O
-        set_cell(6, 2'b01); // X
-        set_cell(7, 2'b10); // O
-        // pos 4, 8 empty
+        set_cell(0, 2'b10);
+        set_cell(1, 2'b01);
+        set_cell(2, 2'b10);
+        set_cell(3, 2'b01);
+        set_cell(5, 2'b10);
+        set_cell(6, 2'b01);
+        set_cell(7, 2'b10);
+
         request = 1;
         #20_000_000;
         request = 0;
@@ -390,11 +355,10 @@ module tb_TicTacToe_Comprehensive();
         // ============================================================
         // CATEGORY 6: EDGE CASES
         // ============================================================
-        $display("\n???????????????????????????????????????????????????");
+        $display("\n===================================================");
         $display("  CATEGORY 6: EDGE CASES");
-        $display("???????????????????????????????????????????????????");
+        $display("===================================================");
         
-        // Test 17: X already won (should handle gracefully)
         #5000;
         clear_board();
         set_cell(0, 2'b01);
@@ -415,7 +379,6 @@ module tb_TicTacToe_Comprehensive();
             $display("? FAIL: Did not return valid");
         end
         
-        // Test 18: O already won (should handle gracefully)
         #5000;
         clear_board();
         set_cell(0, 2'b10);
@@ -436,7 +399,6 @@ module tb_TicTacToe_Comprehensive();
             $display("? FAIL: Did not return valid");
         end
         
-        // Test 19: Full board (draw)
         #5000;
         clear_board();
         set_cell(0, 2'b01);
@@ -462,52 +424,37 @@ module tb_TicTacToe_Comprehensive();
             $display("? FAIL: Did not return valid");
         end
         
-        // Test 20: X has 4 corners
-//        #5000;
-//        clear_board();
-//        set_cell(0, 2'b01);
-//        set_cell(2, 2'b01);
-//        set_cell(6, 2'b01);
-//        set_cell(8, 2'b01);
-//        request = 1;
-//        #20_000_000;
-//        request = 0;
-//        check_result(4, "X has 4 corners - O must take center");
-        
         // ============================================================
         // CATEGORY 7: STRATEGIC POSITIONING
         // ============================================================
-        $display("\n???????????????????????????????????????????????????");
+        $display("\n===================================================");
         $display("  CATEGORY 7: STRATEGIC POSITIONING");
-        $display("???????????????????????????????????????????????????");
+        $display("===================================================");
         
-        // Test 21: Prefer corner over edge
         #5000;
         clear_board();
-        set_cell(4, 2'b01); // X at center
-        set_cell(1, 2'b10); // O at edge
+        set_cell(4, 2'b01);
+        set_cell(1, 2'b10);
         request = 1;
         #20_000_000;
         request = 0;
         check_result_multi(0, 2, 6, "Prefer corner when center taken");
         
-        // Test 22: Double threat scenario
         #5000;
         clear_board();
-        set_cell(0, 2'b10); // O
-        set_cell(2, 2'b10); // O
-        set_cell(4, 2'b01); // X
+        set_cell(0, 2'b10);
+        set_cell(2, 2'b10);
+        set_cell(4, 2'b01);
         request = 1;
         #20_000_000;
         request = 0;
         check_result(1, "Create winning position on edge");
         
-        // Test 23: Advanced positioning
         #5000;
         clear_board();
-        set_cell(4, 2'b10); // O center
-        set_cell(0, 2'b01); // X corner
-        set_cell(8, 2'b10); // O opposite corner
+        set_cell(4, 2'b10);
+        set_cell(0, 2'b01);
+        set_cell(8, 2'b10);
         request = 1;
         #20_000_000;
         request = 0;
@@ -518,30 +465,30 @@ module tb_TicTacToe_Comprehensive();
         // ==============================================================
         #20000;
         $display("\n");
-        $display("??????????????????????????????????????????????????????");
-        $display("?                  TEST SUMMARY               ?");
-        $display("??????????????????????????????????????????????????????");
-        $display("?  Total tests    : %3d                             ?", total_tests);
-        $display("?  Passed         : %3d                             ?", passed_tests);
-        $display("?  Failed         : %3d                             ?", total_tests - passed_tests);
-        $display("?  Success rate   : %3d%%                           ?", (passed_tests * 100) / total_tests);
-        $display("??????????????????????????????????????????????????????");
+        $display("======================================================");
+        $display("|                    TEST SUMMARY                    |");
+        $display("======================================================");
+        $display("|  Total tests    : %3d                              |", total_tests);
+        $display("|  Passed         : %3d                              |", passed_tests);
+        $display("|  Failed         : %3d                              |", total_tests - passed_tests);
+        $display("|  Success rate   : %3d%%                            |", (passed_tests * 100) / total_tests);
+        $display("======================================================");
         
         if (passed_tests == total_tests) begin
             $display("?  PERFECT! ALL TESTS PASSED!                    ?");
             $display("?  AI IS UNBEATABLE - READY FOR DEPLOYMENT!      ?");
         end else if (passed_tests >= total_tests * 90 / 100) begin
-            $display("?  EXCELLENT! Most tests passed (>90%%)          ?");
+            $display("?  EXCELLENT! Most tests passed (> 90%%)          ?");
             $display("?  Minor fixes needed                            ?");
         end else if (passed_tests >= total_tests * 70 / 100) begin
-            $display("?  GOOD! Majority passed (>70%%)                 ?");
+            $display("?  GOOD! Majority passed (> 70%%)                 ?");
             $display("?  Some improvements needed                      ?");
         end else begin
             $display("?  NEEDS WORK! Many tests failed                 ?");
             $display("?  Check algorithm logic                         ?");
         end
         
-        $display("??????????????????????????????????????????????????????\n");
+       $display("======================================================\n");
         
         $finish;
     end

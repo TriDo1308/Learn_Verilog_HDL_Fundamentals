@@ -1,5 +1,7 @@
 module Win_Check (
+    /* From Board Memory */
     input [17:0] board_flat,
+    /* To Controller */
     output reg x_win, o_win, full
 );
     wire [1:0] board [0:8];

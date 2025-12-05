@@ -6,19 +6,19 @@
 #include <termios.h>
 #include <string.h>
 
-#define SERIAL_PORT "/dev/ttyUSB2"   // Change to your port: /dev/ttyUSB0, /dev/ttyUSB1, /dev/ttyACM0,...
+#define SERIAL_PORT "/dev/ttyUSB2"          // Change to your port: /dev/ttyUSB0, /dev/ttyUSB1, /dev/ttyACM0,...
 #define BAUDRATE B115200
 
 char board[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
 
 void display_board(void)
 {
-    printf("\n Current Board\n");
-    printf(" %c | %c | %c \n", board[0], board[1], board[2]);
-    printf("---+---+---\n");
-    printf(" %c | %c | %c \n", board[3], board[4], board[5]);
-    printf("---+---+---\n");
-    printf(" %c | %c | %c \n\n", board[6], board[7], board[8]);
+    printf("\n Current Board\n\n");
+    printf("  %c | %c | %c \n", board[0], board[1], board[2]);
+    printf(" ---+---+---\n");
+    printf("  %c | %c | %c \n", board[3], board[4], board[5]);
+    printf(" ---+---+---\n");
+    printf("  %c | %c | %c \n\n", board[6], board[7], board[8]);
 }
 
 int check_win(char player)
@@ -82,14 +82,14 @@ int main(void)
     printf("Positions:\n");
     printf(" 0 | 1 | 2 \n---+---+---\n 3 | 4 | 5 \n---+---+---\n 6 | 7 | 8 \n\n");
 
-    while (1) { // Play multiple games
+    while (1) {                                         // Play multiple games
         // Reset local board
         for (int i = 0; i < 9; i++) board[i] = ' ';
 
         // Send start-game command (0xFF)
         uint8_t cmd = 0xFF;
         write(fd, &cmd, 1);
-        usleep(100000); // Wait for FPGA to be ready
+        usleep(100000);                                 // Wait for FPGA to be ready
         display_board();
 
         int game_over = 0;
@@ -101,7 +101,7 @@ int main(void)
                 fflush(stdout);
                 if (scanf("%d", &pos) != 1 || pos < 0 || pos > 8 || board[pos] != ' ') {
                     printf("Invalid move! Try again.\n");
-                    while (getchar() != '\n'); // clear stdin buffer
+                    while (getchar() != '\n');          // clear stdin buffer
                 } else {
                     break;
                 }
@@ -122,7 +122,7 @@ int main(void)
 
             if (ack == 0xEE) {
                 printf("FPGA rejected the move (cell already occupied or invalid)!\n");
-                continue; // try again
+                continue;                               // try again
             }
             else if (ack >= 0x30 && ack <= 0x38) {
                 int confirmed = ack - 0x30;
@@ -166,7 +166,7 @@ int main(void)
             }
 
             // Check for game-end status byte (optional, sent only when game ends)
-            struct timeval tv = {0, 200000}; // 200 ms timeout
+            struct timeval tv = {0, 200000};            // 200 ms timeout
             fd_set set;
             FD_ZERO(&set);
             FD_SET(fd, &set);
@@ -195,7 +195,7 @@ int main(void)
         printf("\nPlay again? (y/n): ");
         fflush(stdout);
         scanf(" %c", &choice);
-        while (getchar() != '\n'); // clear stdin
+        while (getchar() != '\n');                      // clear stdin
 
         if (choice != 'y' && choice != 'Y') {
             break;
@@ -203,13 +203,13 @@ int main(void)
 
         // === Clear UART RX buffer before reset ===
         uint8_t trash;
-        struct timeval tv = {0, 100000}; // 100 ms timeout
+        struct timeval tv = {0, 100000};                    // 100 ms timeout
         while (1) {
             fd_set set;
             FD_ZERO(&set);
             FD_SET(fd, &set);
             int rv = select(fd + 1, &set, NULL, NULL, &tv);
-            if (rv <= 0) break; // no more bytes
+            if (rv <= 0) break;                             // no more bytes
             read(fd, &trash, 1);
         }
 
