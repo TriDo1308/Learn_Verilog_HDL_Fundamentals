@@ -199,6 +199,7 @@ module Minimax (
         endcase
     end
 
+    // Minimax engine
     always @(posedge CLK or negedge RST) begin
         if (RST == 0) begin
             sp       <= 0;
