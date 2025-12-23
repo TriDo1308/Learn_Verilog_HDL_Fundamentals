@@ -20,7 +20,6 @@ module Core (
     wire [1:0]  board [0:8];
     wire        x_win, o_win, full;
     
-    // Convert flat 18-bit board to 9×2-bit array for easier indexing
     genvar g;
     generate
         for (g = 0; g < 9; g = g + 1) begin

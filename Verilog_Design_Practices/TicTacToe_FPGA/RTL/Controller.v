@@ -27,7 +27,6 @@ module Controller (
 );
     wire [1:0] board [0:8];
 
-    // Convert flat 18-bit board to 9×2-bit array for easier indexing
     genvar h;
     generate
         for (h = 0; h < 9; h = h + 1) begin
@@ -37,8 +36,8 @@ module Controller (
    
     // =============== State encoding ===============
     localparam IDLE         = 2'b00;
-    localparam WAIT_MOVE    = 2'b01;                       // Player (X) makes a move
-    localparam FPGA_MOVE    = 2'b10;                       // FPGA (O) computes and executes moves
+    localparam WAIT_MOVE    = 2'b01;                    // Player (X) makes a move
+    localparam FPGA_MOVE    = 2'b10;                    // FPGA (O) computes and executes moves
     localparam CHECK        = 2'b11;
 
     //==================================================//
