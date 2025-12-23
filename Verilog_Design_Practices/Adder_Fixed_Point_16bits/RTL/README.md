@@ -7,7 +7,7 @@ Each operand is **16 bits**, received **byte-by-byte (2 bytes per operand)** via
 The system uses **modular design** with UART I/O, input memory, FSM controller, datapath with saturation, and result transmission.  
 All modules are integrated in a top-level IP core suitable for FPGA deployment.
 
-## Project Structure
+## 📁 Project Structure
 
 - `receiver.v`: UART receiver module, receives serial data and outputs valid 8-bit bytes.
 - `Input_Memory.v`: Stores two 16-bit operands (A and B) by loading MSB and LSB separately from UART bytes.
@@ -19,7 +19,7 @@ All modules are integrated in a top-level IP core suitable for FPGA deployment.
 
 ## Module Descriptions
 
-### `receiver.v`
+### 📤 `receiver.v`
 
 Implements a UART receiver using **oversampling** (`CLKS_PER_BIT = 217`).  
 Detects start bit, samples 8 data bits (LSB first), verifies stop bit, and outputs valid byte.
@@ -30,7 +30,7 @@ Detects start bit, samples 8 data bits (LSB first), verifies stop bit, and outpu
 - `Rx_DV_out`: Data valid pulse (1 cycle).
 - `Rx_Byte_out`: 8-bit received data.
 
-### `Input_Memory.v`
+### 📤 `Input_Memory.v`
 
 Stores **two 16-bit operands** (`a_out`, `b_out`) by loading **MSB and LSB separately** via 4 enable signals.  
 Controlled by `Controller.v` to handle byte-by-byte UART input.
@@ -42,7 +42,7 @@ Controlled by `Controller.v` to handle byte-by-byte UART input.
 - `Rx_Byte_in`: 8-bit data from receiver.
 - `a_out`, `b_out`: 16-bit operands for computation.
 
-### `Controller.v`
+### 📤 `Controller.v`
 
 Implements a **4-state FSM** to manage the entire flow:
 - **IDLE**: Wait for first byte.
@@ -59,7 +59,7 @@ Uses counters (`load_counter_r`, `send_counter_r`) to track progress.
 - `c_valid_in`: From datapath.
 - Control outputs: `En_out`, `Load_*_en_out`, `Tx_DV_out`, `MLSB_SEL_Tx_Byte_out`.
 
-### `Datapath.v`
+### 📤 `Datapath.v`
 
 Performs **16-bit signed fixed-point addition** (Q4.3 format) with **saturation**:
 - `sum = a_in + b_in` (17-bit intermediate).
@@ -72,7 +72,7 @@ Performs **16-bit signed fixed-point addition** (Q4.3 format) with **saturation*
 - `c_out`: 16-bit result.
 - `c_valid_out`: Result ready flag.
 
-### `transmitter.v`
+### 📤 `transmitter.v`
 
 Implements a UART transmitter using FSM.  
 Sends **start bit → 8 data bits (LSB first) → stop bit**.  
@@ -84,7 +84,7 @@ Outputs `Tx_Active_out` (active during transmission) and `Tx_Done_out` (pulse on
 - `Tx_Active_out`: Transmission in progress.
 - `Tx_Done_out`: Transmission complete.
 
-### `Core.v`
+### 📤 `Core.v`
 
 Main processing core.  
 Connects `Controller`, `Input_Memory`, and `Datapath`.  
@@ -97,7 +97,7 @@ Selects **MSB or LSB of `c_out`** for transmission using `MLSB_SEL_Tx_Byte_out`.
 - `Tx_DV_out`, `Tx_Byte_out`: To transmitter.
 - `c_out`: Debug output (MSB of result).
 
-### `Add_IP.v`
+### 📤 `Add_IP.v`
 
 Top-level wrapper.  
 Instantiates `receiver`, `Core`, and `transmitter`.  
@@ -109,7 +109,7 @@ Connects UART pins and exposes `LED_out` for debug.
 - `Tx_out`: UART serial output.
 - `LED_out`: Debug output (MSB of result).
 
-## Detailed Data Flow
+## 🔄 Detailed Data Flow
 
 ```mermaid
 graph TD
