@@ -39,12 +39,12 @@ module Minimax (
     reg                 is_max_stack  [0:9];
     reg signed [7:0]    best_stack    [0:9];
     reg [3:0]           try_pos_stack [0:9];
-    reg [3:0]           sp;                     // stack pointer, 0 = idle
+    reg [3:0]           sp;                             // stack pointer, 0 = idle
 
     // Debug
     (* keep = "true" *) reg signed [7:0]    debug_score [0:8];
 
-    // Temp vars (pure combinatorial trong 1 cycle)
+    // Temp vars (pure combinatorial in 1 cycle)
     (* keep = "true" *) reg                 node_backtrack;
     (* keep = "true" *) reg                 move_found;
     (* keep = "true" *) reg signed [7:0]    node_score;
@@ -76,7 +76,7 @@ module Minimax (
         end
     endfunction
 
-    function [1:0]   cell_at;
+    function [1:0] cell_at;
         input [17:0] b;
         input [3:0]  pos;
         begin
